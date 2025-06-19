@@ -48,16 +48,13 @@ namespace Book_Api.Controller
         [HttpPut("update/{id}")]
         public async Task<ActionResult<User>> UpdateUser(int id, User user)
         {
-            if (id != user.Id)
-            {
-                return BadRequest("User not found");
-            }
-
             var existingUser = await _context.Users.FindAsync(id);
+
             if (existingUser == null)
             {
                 return NotFound();
             }
+            
             existingUser.Age = user.Age;
             existingUser.Name = user.Name;
             existingUser.HasBook = user.HasBook;

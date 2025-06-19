@@ -54,12 +54,6 @@ namespace Book_Api.Controller
                 return NotFound("Book not found");
             }
 
-            // Optional: enforce ID match to prevent tampering
-            if (id != book.Id)
-            {
-                return BadRequest("ID in URL doesn't match ID in body");
-            }
-
             // Update the fields
             existingBook.Title = book.Title;
             existingBook.Author = book.Author;
